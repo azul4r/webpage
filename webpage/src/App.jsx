@@ -7,6 +7,6 @@ import loginForm from './components/loginForm'
 
 function App() {
  
-  return <loginForm />
+  return <loginForm/>
 }
 export default App
