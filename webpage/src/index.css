@@ -110,22 +110,28 @@ body {
 /* ========= OPTIONS ========= */
 
 .form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+    display: grid;
+    grid-template-columns: auto auto;
     font-size: .9rem;
+    gap: 10px;
+    column-gap: 10px;
 }
 
-.form-options label {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+.form-options label #remember {
+    grid-column: 1;
+    grid-row: 1;
+}
+.form-options label #showPassword {
+    grid-column: 1;
+    grid-row: 2;
 }
 
 .form-options a {
     color: #2563eb;
     text-decoration: none;
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
 }
 
 .form-options a:hover {

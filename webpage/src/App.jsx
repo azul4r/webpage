@@ -11,6 +11,7 @@ function App() {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   function handlelogin(e) {
 
@@ -79,6 +80,7 @@ function App() {
                         id="password"
                         name="password"
                         placeholder="Masukkan password"
+                        type={showPassword ? 'text' : 'password'}
                          value={password}
                         onChange={(e) => {
                           setPassword(e.target.value); 
@@ -92,6 +94,11 @@ function App() {
                     <label>
                         <input type="checkbox" name="remember" id="remember"/>
                         Ingat saya
+                        
+                    </label>
+                    <label>
+                     <input id="showPassword" type="checkbox" onClick={() => setShowPassword(!showPassword)}/>
+                        Tampilkan Password
                     </label>
 
                     <a href="#">Lupa password?</a>
