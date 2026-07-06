@@ -1,4 +1,6 @@
-function loginForm(){
+import {useState} from "react";
+
+function LoginForm(){
     const [count, setCount] = useState(0)
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -70,7 +72,6 @@ function loginForm(){
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
-                        type="password"
                         id="password"
                         name="password"
                         placeholder="Masukkan password"
@@ -108,3 +109,4 @@ function loginForm(){
     </>
     )
 }
+export default LoginForm
