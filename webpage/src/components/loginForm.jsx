@@ -1,11 +1,17 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-function LoginForm(){
+function LoginForm({title, subtitle, buttonText}) {
+    const navigate = useNavigate();
+    //navigasi
     const [count, setCount] = useState(0)
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    //user dan pass
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     
@@ -35,9 +41,11 @@ function LoginForm(){
     
         setTimeout(() => {
           setLoading(false); // Set loading state to false after 2 seconds
-          console.log('Username:', username);
-          console.log('Password:', password);
-          console.log('Login successful!');
+
+            localStorage.setItem("isLoggedIn", "true"); // Store login state in localStorage
+            localStorage.setItem("username", username); // Store username in localStorage
+
+          navigate('/Dashboard'); // Navigate to the dashboard page
         }, 2000);
     }
     
@@ -46,8 +54,8 @@ function LoginForm(){
      <section className="login-card">
 
             <header className="login-header">
-                <h1>Masuk</h1>
-                <p>Silakan masuk untuk melanjutkan.</p>
+                <h1>{title}</h1>
+                <p>{subtitle}</p>
             </header>
 
             <form className="login-form" onSubmit={handlelogin}>
@@ -100,10 +108,11 @@ function LoginForm(){
                 </div>
 
                 <button type="submit" disabled={loading}>
-                    {loading ? 'Logging in...' : 'Login'}
+                    {loading ? 'Logging in...' : buttonText}
                 </button>
 
             </form>
+            
 
         </section>
     </>
