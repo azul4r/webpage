@@ -1,5 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {login} from "../utils/Auth.js";
+import {loginRequest} from "../api/Auth.js";
 
 function LoginForm({title, subtitle, buttonText}) {
     const navigate = useNavigate();
@@ -15,7 +17,7 @@ function LoginForm({title, subtitle, buttonText}) {
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     
-    function handlelogin(e) {
+    async function handlelogin(e) {
     
         e.preventDefault();
         // Login logic here
@@ -38,15 +40,17 @@ function LoginForm({title, subtitle, buttonText}) {
         setPasswordError(''); // Clear password error if valid
     
         setLoading(true); // Set loading state to true
-    
-        setTimeout(() => {
-          setLoading(false); // Set loading state to false after 2 seconds
-
-            localStorage.setItem("isLoggedIn", "true"); // Store login state in localStorage
-            localStorage.setItem("username", username); // Store username in localStorage
-
-          navigate('/Dashboard'); // Navigate to the dashboard page
-        }, 2000);
+        try {
+           const response = await loginRequest(username, password);
+           login(response.username); // Call the login function to set login state
+           navigate('/dashboard'); // Navigate to the dashboard page
+           console.log(response)
+        } catch (error) {
+            setUsernameError('Username salah.');
+            setPasswordError('Password salah.');
+        } finally {
+            setLoading(false);
+        }
     }
     
     return (

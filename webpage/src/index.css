@@ -178,6 +178,20 @@ button:active {
 .input-success {
     border-color: #22c55e !important;
 }
+
+
+/* ========= DASHBOARD ========= */
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+
 /* ========= RESPONSIVE ========= */
 
 @media (max-width: 480px) {

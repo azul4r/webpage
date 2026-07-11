@@ -2,18 +2,21 @@ import {useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import {useEffect} from 'react';
 import {isLoggedIn, login, logout, getUsername } from '../utils/Auth.js';
+import {testRequest} from '../api/test.js';
 
 function Dashboard() {
     const username = getUsername(); // Retrieve username using the getUsername function
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    
+
     useEffect(() => {
-        const LoggedIn = isLoggedIn();
-        if (!LoggedIn) {
-            navigate('/'); // Redirect to login page if not logged in
+        async function loadData() {
+            const data = await testRequest();
+            console.log(data);
         }
+        loadData();
     }, []);
+
     function handleLogout() {
         setLoading(true);
         setTimeout(() => {

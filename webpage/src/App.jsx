@@ -6,6 +6,7 @@ import heroImg from './assets/hero.png'
 
 import Login from './pages/login.jsx'
 import Dashboard from './pages/dashboard.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
       <Route path="/" element={<Login />} />
 
       <Route path="/dashboard" element={
-        
+        <ProtectedRoute>
           <Dashboard />
-        
+        </ProtectedRoute>
       } />
     </Routes>
   )
